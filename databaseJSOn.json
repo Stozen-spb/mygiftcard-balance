@@ -1,0 +1,19 @@
+{
+	"users": {
+		"1": {
+			"id":"1",
+			"token": "sdfsf",
+			"phone":"+79095904565",
+			"cards": {
+				"1": {
+					"cardNumber":"6518",
+					"cardName":"first"
+				},
+				"2": {
+					"cardNumber":"3984",
+					"cardName":"seconds"
+				}
+			}
+		}	
+	}
+}
