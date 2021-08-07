@@ -1,6 +1,7 @@
 <template>
-	<div>
-		<button v-if="!formVisible" type="button" @click='formVisible = !formVisible' class="btn btn-info add-card">Добавить карту</button>
+	<div class="component-container">
+		<button v-if="!formVisible" type="button" @click='formVisible = !formVisible' class="btn btn-success add-card">Добавить карту</button>
+		<button @click="$store.commit('logOut')" type="button" class="btn btn-warning">LOGOUT</button>
 		<div v-if="formVisible" class="row align-items-center justify-content-center">
 			 <form class="col-8">
                         <div class="card border-primary rounded-0">
@@ -29,7 +30,8 @@
                                         	class="form-control" 
                                         	id="cardNumber" 
                                         	name="cardNumber" 
-                                        	placeholder="Последние 4 цифры" 
+                                        	placeholder="Последние 4 цифры"
+											maxlength="4" 
                                         	required
                                         >
                                     </div>
@@ -39,7 +41,15 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fa fa-list text-info"></i></div>
                                         </div>
-                                        <input type="text" class="form-control" id="cardName" name="cardName" placeholder="Имя (необязательно)" v-model="cardName">
+                                        <input 
+										type="text" 
+										class="form-control" 
+										id="cardName" 
+										name="cardName" 
+										placeholder="Имя (необязательно)" 
+										v-model="cardName"
+										@input="inputCardName"
+										>
                                     </div>
                                 </div>
 
@@ -88,6 +98,10 @@
 				this.cardNumber = value
 				
 			},
+			inputCardName(e){
+				let value= e.target.value.replace(/[^0-9A-Za-zА-Яа-я]/g, '')
+				this.cardName = value
+			},
 			closeForm() {
 				this.formVisible = false;
 			},
@@ -120,6 +134,9 @@
 	}
 	.add-card {
 		margin-top: 0.5rem;
+	}
+	.component-container {
+		margin-top: 5%;
 	}
 
 </style>

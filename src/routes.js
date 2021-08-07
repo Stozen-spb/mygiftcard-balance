@@ -5,16 +5,19 @@ import AddCardForm from './AddCardForm.vue'
 import CardList from './CardList.vue'
 import RegisterForm from './RegisterForm.vue'
 import MainPage from './MainPage.vue'
+import store from './store'
 Vue.use(VueRouter)
 
 const routes = [
 	{
 		path: '/login',
-		component: LoginForm
+		component: LoginForm,
+		meta: {auth:false}
 	},
 	{
-		path: '/register',
-		component: RegisterForm
+		path: '/registration',
+		component: RegisterForm,
+		meta: {auth:false}
 	},
 	{
 		path: '/',
@@ -22,11 +25,30 @@ const routes = [
 		// components:{
 		// 	default:AddCardForm,
 		// 	second:CardList
-		// }
+		// },
+		meta: {auth:true}
+	},
+	{
+		path:'*',
+		redirect:'/'
 	}
 ]
 
-export const router = new VueRouter({
+
+const router = new VueRouter({
 	routes,
 	mode: 'history'
 });
+
+router.beforeEach((to,from,next)=>{
+	//debugger;
+	const uid = localStorage.getItem('uid')
+	const requiredAuth = to.matched.some(record => record.meta.auth)
+	if (!uid && requiredAuth) {
+		next('/login')
+	} else {
+		next()
+	}
+})
+
+export default router

@@ -6,7 +6,7 @@ import LoginForm from './LoginForm.vue'
 import RegisterForm from './RegisterForm.vue'
 import MainPage from './MainPage.vue'
 import {store} from './store/'
-import {router} from './routes'
+import router from './routes'
 import { auth } from './firebase'
 
 //import Head from './CardList.vue'

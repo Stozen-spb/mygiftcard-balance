@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import axios from 'axios'
 import { db } from '../firebase'
 import { auth } from '../firebase'
+import router  from '../routes'
 //import auth from './auth'
 
 
@@ -11,16 +12,23 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
 	state: {
 		cards: [],
-		userID: 1,
+		userID: localStorage.getItem('uid') || null,
+		//userID:"BJxafKUDPEXks3HDo2MQAOsPPlE2",
+		allowRegistration: null,
 	},
 	getters: {
 		cardList(state) {
 			return state.cards;
+		},
+		allowRegistration(state) {
+			return state.allowRegistration
+		},
+		userID(state) {
+			return state.userID
 		}
 	},
 	mutations: {
 		cardsFromDatabase(state,data) {
-
 			for (let key in data) {
 				data[key]['databaseKey'] = key;
 				state.cards.push(data[key])
@@ -37,10 +45,13 @@ export const store = new Vuex.Store({
 			card.balance = data.balance.availableAmount.toFixed(2)
 			state.cards.splice()
 		},
-		userLogin(state,user) {
-			state.user = user
-			state.currentUser = auth.currentUser
-			debugger;
+		afterCheckingUserRegistration(state,status) {
+			state.allowRegistration = status
+		},
+		logOut(state,payLoad) {
+			state.userID = null;
+			localStorage.removeItem('uid')
+			router.push('/login')
 		}
 
 	},
@@ -51,8 +62,11 @@ export const store = new Vuex.Store({
 			userRef.on('value', snapshot => {
 				console.log(snapshot.val())
 				const userData = snapshot.val()
-				if (userData.id != store.state.userID ) return false;
+				if (userData.uid != store.state.userID ) return false;
 				store.state.cards.splice(0,store.state.cards.length);
+				if (data == '{}') {
+					return false;
+				}
 				store.commit('cardsFromDatabase',userData.cards)
 				for (let key in userData.cards) {
 					userData.cards[key].phone = userData.phone
@@ -88,7 +102,49 @@ export const store = new Vuex.Store({
 			const cardDBKey = store.state.cards[index].databaseKey
 			const refPath = `users/${store.state.userID}/cards`
 			db.ref(refPath).child(cardDBKey).remove();
-		}
+		},
+		checkUserForRegistration(store,payLoad) {
+			const refPath = 'users/'
+			const enteredPhone = payLoad
+			db.ref(refPath).child('registeredPhones/').child(enteredPhone).on('value', snapshot =>{
+				const user  = snapshot.val()
+				if (user === null ) {
+					store.commit('afterCheckingUserRegistration','allow')
+				}
+				if (user && user.registered == 1) {
+					store.commit('afterCheckingUserRegistration','disallow')
+				}
+			})
+
+		},
+		userRegister(store,user) {
+			const uid = user.uid
+			const userPhone = user.phoneNumber
+			const userName = user.userName
+			const refPath = `users/`;
+			store.state.userID = uid
+			
+			db.ref(refPath).child(uid).set({
+				cards: '{}',
+				uid:uid,
+				phone:userPhone,
+				userName: userName
+			})
+			db.ref(refPath).child('registeredPhones').child(userPhone).set({
+				registered: 1,
+				uid:uid
+			})
+			localStorage.setItem('uid',uid)
+			router.push('/')
+		},
+		userLogin(store,user) {
+			const uid = user.uid
+			store.state.userID = uid
+			store.dispatch('getUserDataFromFirebaseDatabase')
+			localStorage.setItem('uid',uid)
+			router.push('/')
+			
+		},
 	},
 	modules: {
 		auth
