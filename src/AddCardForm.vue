@@ -1,10 +1,9 @@
 <template>
 	<div class="component-container">
 		<button v-if="!formVisible" type="button" @click='formVisible = !formVisible' class="btn btn-success add-card">Добавить карту</button>
-		<button @click="$store.commit('logOut')" type="button" class="btn btn-warning">LOGOUT</button>
 		<div v-if="formVisible" class="row align-items-center justify-content-center">
-			 <form class="col-8">
-                        <div class="card border-primary rounded-0">
+			 <form class="col-md-8 col-lg-6">
+                        <div class="card rounded-0">
                             <div class="card-header p-0">
                                 <div class="bg-info text-white text-center py-2">
                                     <h3>
@@ -99,7 +98,7 @@
 				
 			},
 			inputCardName(e){
-				let value= e.target.value.replace(/[^0-9A-Za-zА-Яа-я]/g, '')
+				let value= e.target.value.replace(/[^0-9A-Za-zА-Яа-я\s]/g, '')
 				this.cardName = value
 			},
 			closeForm() {
@@ -136,7 +135,7 @@
 		margin-top: 0.5rem;
 	}
 	.component-container {
-		margin-top: 5%;
+		margin-top: 10px;
 	}
 
 </style>

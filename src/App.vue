@@ -52,7 +52,9 @@ a {
   color: #42b983;
 }
 body {
+    padding: 0;
+    margin: 0;
     background-color: #ffffff;
-    background-image: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
+    background-image: linear-gradient(259deg, #ffffff 0%, #d7e1ec 74%);
   }
 </style>

@@ -1,8 +1,13 @@
 <template>
-	<div>
-		<AddCardForm></AddCardForm>
-		<CardList></CardList>
+	<div class="row">
+			<div class="col p-0">
+				<Header></Header>
+				<AddCardForm></AddCardForm>
+				<CardList></CardList>
+		
+		</div>
 	</div>
+
 	
 </template>
 

@@ -1,19 +1,19 @@
 <template>
 	<div class='row cardlist align-items-center justify-content-center'>
-		<div class="col-8 gift-card" v-for="item in cards" :key='item.databaseKey'>
+		<div class="gift-card col-md-8 col-lg-6" v-for="item in cards" :key='item.databaseKey'>
 			<div class="card-header">
 				<div class="card-name">{{item.cardName ? item.cardName : 'Без названия'}}</div>
 			</div>
 			<div class="row" >
 				<div class="col">*{{item.cardNumber}}</div>
 				<div class="col">{{item.date ? item.date : 'Загрузка' }}</div>
-				<div class="col">{{item.balance ? item.balance : 'Загрузка'}}</div>
+				<div class="col">{{item.balance ? item.balance : 'Загрузка'}} руб.</div>
 				<div class="col"> 
 					<i @click='deleteCard($event,item)' class="fa fa-trash delete-card" aria-hidden="true"></i>
 				</div>
 			</div>
 		</div>
-		<div v-if="!cards.length"  class="col-8 gift-card empty">
+		<div v-if="!cards.length"  class="col-md-8 col-lg-6 gift-card empty">
 			<div class="">Список карт пуст</div>
 		</div>
 	</div>

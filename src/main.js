@@ -5,6 +5,7 @@ import AddCardForm from './AddCardForm.vue'
 import LoginForm from './LoginForm.vue'
 import RegisterForm from './RegisterForm.vue'
 import MainPage from './MainPage.vue'
+import Header from './Header.vue'
 import {store} from './store/'
 import router from './routes'
 import { auth } from './firebase'
@@ -17,6 +18,7 @@ Vue.component('AddCardForm',AddCardForm)
 Vue.component('LoginForm',LoginForm)
 Vue.component('RegisterForm',RegisterForm)
 Vue.component('MainPage',MainPage)
+Vue.component('Header',Header)
 let app
 
 auth.onAuthStateChanged(()=>{
