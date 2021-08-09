@@ -1,12 +1,15 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <img src="./assets/logo.svg" alt="logo" class="logo">
-        <a class="navbar-brand" href="#"> Balance</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <div>
+            <img src="./assets/logo.svg" alt="logo" class="logo">
+            <a class="navbar-brand" href="#"> Balance</a>
+        </div>
+        
+        <button @click="toggleNavbar" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" :class="showNavbar ? 'show' : ''" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <router-link class="nav-link" to="/">Home</router-link>
@@ -30,7 +33,7 @@
 export default {
     data() {
         return {
-
+            showNavbar:false
         }
     },
     methods: {
@@ -38,6 +41,9 @@ export default {
             e.preventDefault()
             if ( !confirm('Выйти из аккаунта?')) return
             this.$store.commit('logOut')
+        },
+        toggleNavbar(){
+            this.showNavbar = !this.showNavbar
         }
     },
     computed: {

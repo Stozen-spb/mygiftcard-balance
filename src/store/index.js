@@ -43,6 +43,7 @@ export const store = new Vuex.Store({
 			let card = state.cards[index]
 			card.date = formatedDate
 			card.balance = data.balance.availableAmount.toFixed(2)
+			card.history = data.history
 			state.cards.splice()
 		},
 		afterCheckingUserRegistration(state,status) {

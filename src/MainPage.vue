@@ -1,9 +1,11 @@
 <template>
-	<div class="row">
+	<div class="row main-container">
 			<div class="col p-0">
-				<Header></Header>
-				<AddCardForm></AddCardForm>
-				<CardList></CardList>
+				<div class="content">
+					<Header></Header>
+					<AddCardForm></AddCardForm>
+					<CardList></CardList>
+				</div>
 		
 		</div>
 	</div>
@@ -21,4 +23,8 @@
 	}
 </script>
 
-<style scoped></style>
+<style scoped>
+	.main-container {
+		flex: 1 0 auto;
+	}
+</style>

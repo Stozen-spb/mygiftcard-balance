@@ -1,10 +1,9 @@
 <template>
-  <div class="container-fluid">
-      <div id="app">
+
+      <div id="app" class="container">
        <router-view></router-view>
        <router-view name="second"></router-view>
       </div>
-  </div>
 
 </template>
 
@@ -25,6 +24,8 @@ export default {
 
 <style>
 #app {
+  display: flex;
+  flex-direction: column;
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -32,6 +33,10 @@ export default {
   color: #2c3e50;
   max-width: 1000px;
   margin:0 auto;
+  height:100%;
+  background-color: #000;
+  background-image: linear-gradient(309deg, #ffffff 0%, #d7e1ec 74%);
+  background-clip: padding-box;
 }
 
 h1, h2 {
@@ -55,6 +60,14 @@ body {
     padding: 0;
     margin: 0;
     background-color: #ffffff;
-    background-image: linear-gradient(259deg, #ffffff 0%, #d7e1ec 74%);
+    
   }
+
+  html, body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
 </style>

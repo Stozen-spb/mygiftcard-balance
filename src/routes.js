@@ -5,6 +5,7 @@ import AddCardForm from './AddCardForm.vue'
 import CardList from './CardList.vue'
 import RegisterForm from './RegisterForm.vue'
 import MainPage from './MainPage.vue'
+import Footer from './Footer.vue'
 import store from './store'
 Vue.use(VueRouter)
 
@@ -21,11 +22,11 @@ const routes = [
 	},
 	{
 		path: '/',
-		 component: MainPage,
-		// components:{
-		// 	default:AddCardForm,
-		// 	second:CardList
-		// },
+		//component: MainPage,
+		components:{
+			default:MainPage,
+			second:Footer
+		},
 		meta: {auth:true}
 	},
 	{

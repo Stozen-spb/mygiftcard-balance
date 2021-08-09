@@ -2,7 +2,7 @@
 	<div class="component-container">
 		<button v-if="!formVisible" type="button" @click='formVisible = !formVisible' class="btn btn-success add-card">Добавить карту</button>
 		<div v-if="formVisible" class="row align-items-center justify-content-center">
-			 <form class="col-md-8 col-lg-6">
+			 <form class="col-md-8 col-lg-6 animated fadeIn">
                         <div class="card rounded-0">
                             <div class="card-header p-0">
                                 <div class="bg-info text-white text-center py-2">
