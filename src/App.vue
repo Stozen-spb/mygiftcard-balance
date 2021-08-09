@@ -1,6 +1,6 @@
 <template>
 
-      <div id="app" class="container">
+      <div id="app" class="container-fluid">
        <router-view></router-view>
        <router-view name="second"></router-view>
       </div>
@@ -23,6 +23,7 @@ export default {
 </script>
 
 <style>
+html{font-size: calc((1vh+1vw)*2)}
 #app {
   display: flex;
   flex-direction: column;
@@ -31,7 +32,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  max-width: 1000px;
   margin:0 auto;
   height:100%;
   background-color: #000;

@@ -1,6 +1,6 @@
 <template>
 	<div class='row cardlist align-items-center justify-content-center'>
-		<div class="gift-card col-md-8 col-lg-6 animated flipInX" v-for="item in cards" :key='item.databaseKey'>
+		<div class="gift-card col col-sm-10 col-md-8 col-lg-6 col-xl-4 animated flipInX" v-for="item in cards" :key='item.databaseKey'>
 			<div class="card-header">
 				<div class="card-name">{{item.cardName ? item.cardName : 'Без названия'}}</div>
 			</div>
@@ -107,6 +107,7 @@
 	.cardlist {
 		justify-content: space-between;
   		margin: 0 auto;	
+  		flex-direction: column;
 	}
 	.gift-card {
 		margin: 0.3em 0.2em;

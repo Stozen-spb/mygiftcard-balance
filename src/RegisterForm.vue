@@ -1,6 +1,6 @@
 <template>
 	<div class="row align-items-center justify-content-center register">
-		 			 <form class="col-8">
+		 			 <form class="col col-lg-6 col-xl-4">
                         <div class="card border-primary rounded-0">
                             <div class="card-header p-0">
                                 <div class="bg-info text-white text-center py-2">

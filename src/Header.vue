@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div>
-            <img src="./assets/logo.svg" alt="logo" class="logo">
+            <img src="logo.svg" alt="logo" class="logo">
             <a class="navbar-brand" href="#"> Balance</a>
         </div>
         

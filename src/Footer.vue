@@ -2,7 +2,7 @@
 	<div class="footer row justify-content-center">
 		<div class="main col p-0 row">
 			<div class="col"> ©2021 </div>
-			<div class=" col"><img class="signature" src="./assets/AK.png" alt=""> </div> 
+			<div class=" col"><img class="signature" src="AK.png" alt=""> </div> 
 			<div class="col">
 				<a class="footer-link" href="mailto:2012stalker@gmail.com">2012stalker@gmail.com</a>
 			</div>
