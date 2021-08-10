@@ -54,7 +54,7 @@ export default {
 
 <style scoped>
     nav.navbar {
-        background-color: #45b5dc!important;
+        background-color: #17a2b8!important;
         font-size: 1.2rem;
         font-weight: bold;
     }

@@ -24,7 +24,7 @@
 <style scoped>
 	.footer {
   		flex-shrink: 0;
-  		background-color: #81c789;
+  		background-color: #009999;
   		color:#fff;
   		padding:10px 20px;
 	}

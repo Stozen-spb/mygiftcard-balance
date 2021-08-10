@@ -34,16 +34,22 @@ export const store = new Vuex.Store({
 				state.cards.push(data[key])
 			}
 		},
-		updateCardInfo(state,response) {
-			const data = response.data.data
+		updateCardInfo(state,payLoad) {
+			const data = payLoad.response.data.data
 			//debugger;
-			const formatedDate = data.validUntil.split('-').reverse().join('.')
-			const number = data.maskedPan.substring(7)
+			//const number = data.maskedPan.substring(7)
+			const number = payLoad.cardNumber
 			const index = state.cards.findIndex(item => item.cardNumber == number)
 			let card = state.cards[index]
-			card.date = formatedDate
-			card.balance = data.balance.availableAmount.toFixed(2)
-			card.history = data.history
+			if (payLoad.response.data.status == 'OK') {
+				const formatedDate = data.validUntil.split('-').reverse().join('.')
+				card.date = formatedDate
+				card.balance = data.balance.availableAmount.toFixed(2)
+				card.history = data.history
+			} else {
+				card.error = payLoad.response.data.status
+			}
+			
 			state.cards.splice()
 		},
 		afterCheckingUserRegistration(state,status) {
@@ -77,8 +83,12 @@ export const store = new Vuex.Store({
 		},
 		getCardInfo(store,card) {
 			//return false
-			console.log(card);
-			store.dispatch('makeRequest',card).then(response => store.commit('updateCardInfo', response) )
+			//console.log(card);
+			store.dispatch('makeRequest',card).then(response => store.commit('updateCardInfo', {
+				response: response,
+				cardNumber: card.cardNumber
+			}
+				) )
 		},
 		makeRequest(store,card) {
 			let payLoad = {
