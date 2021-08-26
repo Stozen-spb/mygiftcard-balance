@@ -116,6 +116,8 @@
 				}
 				this.$store.dispatch('addCard',cardData)
 				this.formVisible = false;
+				this.cardNumber = null;
+				this.cardName = null;
 			}
 		}
 	}
